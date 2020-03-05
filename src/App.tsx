@@ -1,10 +1,22 @@
 import React from "react";
-import "./App.css";
+import {Provider} from "react-redux";
+import {createBrowserHistory} from "history";
 
 import {MainRouter} from "./MainRouter";
+import store from "./store/store";
+import "antd/dist/antd.css";
+import "./App.css";
+import {setupInterceptors} from "./utils/httpService";
 
+const history = createBrowserHistory();
+
+setupInterceptors(store, history);
 const App = () => {
-  return <MainRouter />;
+  return (
+    <Provider store={store}>
+      <MainRouter />
+    </Provider>
+  );
 };
 
 export default App;
