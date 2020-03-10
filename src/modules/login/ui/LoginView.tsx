@@ -61,6 +61,11 @@ const LoginView: React.FC<Props> = ({ onSubmit, showSendLinkAgain }: Props) => {
                 Haven't account? <Link to={"/register"}>Register now</Link>
               </Typography>
             </div>
+            <div style={{ paddingTop: 20 }}>
+              <Typography>
+                <Link to={"/forgot-password"}>Forgot password</Link>
+              </Typography>
+            </div>
           </Form>
         )}
       </Formik>

@@ -8,7 +8,7 @@ import {FieldError, User} from "../../shared/constants/interfaces";
 import {LoginValues} from "./types";
 import {FormikHelpers} from "formik";
 import {setAccessToken, setCurrentUser} from "../../store/actions/auth.actions";
-import {ConnectedRouterProps} from "react-router-redux";
+import {RouteComponentProps} from "react-router";
 
 interface Props {
   setCurrentUser: (user: User) => void;
@@ -19,7 +19,7 @@ const LoginConnector = ({
   history,
   setCurrentUser,
   setToken
-}: Props & ConnectedRouterProps<Props>) => {
+}: Props & RouteComponentProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const [showSendLinkAgain, setShowSendLinkAgain] = useState<boolean>(false);
 

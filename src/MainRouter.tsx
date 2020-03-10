@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import RegisterConnector from "./modules/register/RegisterConnector";
 import LoginConnector from "./modules/login/LoginConnector";
-import {ForgotPassword} from "./modules/forgotPassword/ForgotPassword";
+import ForgotPassword from "./modules/forgotPassword/ForgotPassword";
 import LandingPage from "./modules/landing/LandingPage";
 import SendConfirmationAgain from "./modules/sendConfirmationAgain.tsx/SendConfirmationAgain";
 
