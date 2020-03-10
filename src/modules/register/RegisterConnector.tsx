@@ -7,7 +7,7 @@ import {FieldError} from "../../shared/constants/interfaces";
 import {RegisterValues} from "./types";
 import {FormikHelpers} from "formik";
 
-export const RegisterConnector = (props: any) => {
+const RegisterConnector = (props: any) => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (
@@ -34,3 +34,5 @@ export const RegisterConnector = (props: any) => {
   };
   return <RegisterView onSubmit={handleSubmit} />;
 };
+
+export default RegisterConnector;
