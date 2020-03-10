@@ -1,34 +1,36 @@
-import React, {useState} from "react";
+import React from "react";
+import {useSnackbar} from "notistack";
 
 import RegisterView from "./ui/RegisterView";
 import {httpService} from "../../utils/httpService";
-import {openNotification} from "../../utils/notificationService";
 import {FieldError} from "../../shared/constants/interfaces";
+import {RegisterValues} from "./types";
+import {FormikHelpers} from "formik";
 
 export const RegisterConnector = (props: any) => {
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<FieldError[]>([]);
+  const { enqueueSnackbar } = useSnackbar();
 
-  const handleSubmit = async (fields: any) => {
-    setLoading(true);
-    console.log(fields);
+  const handleSubmit = async (
+    values: RegisterValues,
+    { setSubmitting, setErrors }: FormikHelpers<RegisterValues>
+  ) => {
+    setSubmitting(true);
     try {
-      const { data } = await httpService.post("/register", fields);
+      const { data } = await httpService.post("/register", values);
       if (data) {
-        openNotification("Registration Success", "success");
+        enqueueSnackbar("Registration Success", { variant: "success" });
         props.history.push("/login");
       }
     } catch ({ data }) {
-      setErrors(data);
+      setErrors(
+        data.reduce((acc: any, { path, message }: FieldError) => {
+          acc[path] = message;
+          return acc;
+        }, {})
+      );
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
-  return (
-    <RegisterView
-      onSubmit={handleSubmit}
-      loading={loading}
-      serverErrors={errors}
-    />
-  );
+  return <RegisterView onSubmit={handleSubmit} />;
 };
