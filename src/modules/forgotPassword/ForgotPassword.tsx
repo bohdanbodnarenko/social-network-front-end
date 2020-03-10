@@ -1,15 +1,15 @@
 import * as React from "react";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {RouteComponentProps} from "react-router";
-import {Button, Typography} from "@material-ui/core";
-import {useSnackbar} from "notistack";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { RouteComponentProps } from "react-router";
+import { Button, Typography } from "@material-ui/core";
+import { useSnackbar } from "notistack";
 
-import {TextFormField} from "../../components/FormFields";
-import {validForgotPasswordSchema} from "./types";
-import {validEmailSchema} from "../login/types";
-import {Link} from "react-router-dom";
-import {httpService} from "../../utils/httpService";
-import {FieldError} from "../../shared/constants/interfaces";
+import { TextFormField } from "../../components/FormFields";
+import { validForgotPasswordSchema } from "./types";
+import { validEmailSchema } from "../login/types";
+import { Link } from "react-router-dom";
+import { httpService } from "../../utils/httpService";
+import { FieldError } from "../../shared/constants/interfaces";
 
 import "./styles.css";
 
@@ -40,6 +40,9 @@ const ForgotPassword: React.FC<RouteComponentProps<{
         values
       );
       enqueueSnackbar(data.message, { variant: "success" });
+      if (recoverId) {
+        props.history.push("/login");
+      }
     } catch ({ data }) {
       setErrors(
         data.reduce((acc: any, { path, message }: FieldError) => {
