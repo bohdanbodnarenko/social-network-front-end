@@ -2,7 +2,6 @@ import axios from "axios";
 import {Store} from "redux";
 import {History} from "history";
 
-import {openNotification} from "./notificationService";
 import {logout} from "../store/actions/auth.actions";
 
 const badAuthStatuses = [401, 403];
@@ -27,20 +26,16 @@ export const setupInterceptors = (store: Store, history: History) => {
     },
     error => {
       if (!error.response) {
-        openNotification("Server error", "error");
-        return;
+        return Promise.reject({ data: { error: "Server error" } });
       }
       if (badAuthStatuses.includes(error.response.status)) {
         if (store.getState().auth.isAuth) {
           store.dispatch(logout());
-          openNotification("Your token expired, please login", "warn");
           history.push("/login");
         }
         return Promise.reject(error.response);
       } else {
         if (error.response.data.error) {
-          //   store.dispatch(addNotification(error.response.data.message));
-          openNotification(error.response.data.error, "error");
           return Promise.reject(error.response);
         }
       }

@@ -1,10 +1,10 @@
 import React from "react";
 import {Provider} from "react-redux";
 import {createBrowserHistory} from "history";
+import {SnackbarProvider} from "notistack";
 
 import {MainRouter} from "./MainRouter";
 import store from "./store/store";
-import "antd/dist/antd.css";
 import "./App.css";
 import {setupInterceptors} from "./utils/httpService";
 
@@ -14,7 +14,9 @@ setupInterceptors(store, history);
 const App = () => {
   return (
     <Provider store={store}>
-      <MainRouter />
+      <SnackbarProvider maxSnack={3}>
+        <MainRouter />
+      </SnackbarProvider>
     </Provider>
   );
 };
