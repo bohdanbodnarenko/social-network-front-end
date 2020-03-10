@@ -29,7 +29,7 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
           />
           <Field
             name={"lastName"}
-            label={"lastName"}
+            label={"Last Name"}
             component={TextFormField}
             variant="outlined"
           />
