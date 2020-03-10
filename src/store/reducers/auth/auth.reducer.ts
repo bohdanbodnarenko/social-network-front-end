@@ -7,7 +7,7 @@ const currentUser = window.localStorage.getItem("currentUser"),
   token = window.localStorage.getItem("accessToken");
 
 const initialState: AuthState = {
-  accessToken: "",
+  accessToken: token || "",
   isAuth: !!token,
   currentUser: currentUser ? JSON.parse(currentUser) : null
 };
@@ -21,10 +21,10 @@ export const auth = (state = initialState, action: AnyAction) => {
         accessToken: action.payload
       };
 
-    case types.SET_CURRENT_PROVIDER:
+    case types.SET_CURRENT_USER:
       return {
         ...state,
-        currentProvider: action.payload,
+        currentUser: action.payload,
         isAuth: true
       };
 

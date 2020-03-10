@@ -1,5 +1,13 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-export const LandingPage = () => {
-  return <div>It's a landing</div>;
+const LandingPage: React.FC = () => {
+  return (
+    <div>
+      <Link to={"/register"}>Register</Link>
+      <Link to={"/login"}>Login</Link>
+    </div>
+  );
 };
+
+export default LandingPage;

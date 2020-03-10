@@ -3,7 +3,7 @@ import {AnyAction} from "redux";
 import * as types from "./actionTypes";
 import {updateHttpServiceToken} from "../../utils/httpService";
 
-export const loginSuccess = (token: string): AnyAction => {
+export const setAccessToken = (token: string): AnyAction => {
   window.localStorage.setItem("accessToken", token);
   updateHttpServiceToken(token);
   return {
@@ -12,11 +12,11 @@ export const loginSuccess = (token: string): AnyAction => {
   };
 };
 
-export const setCurrentUser = (provider: any): AnyAction => {
-  window.localStorage.setItem("currentProvider", JSON.stringify(provider));
+export const setCurrentUser = (user: any): AnyAction => {
+  window.localStorage.setItem("currentUser", JSON.stringify(user));
   return {
-    type: types.SET_CURRENT_PROVIDER,
-    payload: provider
+    type: types.SET_CURRENT_USER,
+    payload: user
   };
 };
 
