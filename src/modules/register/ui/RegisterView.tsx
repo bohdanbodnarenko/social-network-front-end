@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {TextFormField} from "../../../components/";
 import {RegisterValues, validUserSchema} from "../types";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface Props {
   onSubmit: (
@@ -24,7 +24,7 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={"register-form"}>
+          <Form>
             <Typography variant={"h2"}>Registration</Typography>
             <Field
               name={"firstName"}

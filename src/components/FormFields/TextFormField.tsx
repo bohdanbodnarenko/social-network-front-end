@@ -1,14 +1,13 @@
-import {FieldProps, getIn} from "formik";
+import { FieldProps } from "formik";
 import React from "react";
-import {TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 
 export const TextFormField: React.FC<FieldProps> = ({
   field,
   form,
   ...props
 }) => {
-  const errorText =
-    getIn(form.touched, field.name) && getIn(form.errors, field.name);
+  const errorText = form.touched[field.name] && form.errors[field.name];
 
   return (
     <TextField

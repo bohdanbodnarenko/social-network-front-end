@@ -9,7 +9,7 @@ import {TextFormField} from "../../components/FormFields";
 import {httpService} from "../../utils/httpService";
 import {FieldError} from "../../shared/constants/interfaces";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface Values {
   email: string;
@@ -48,7 +48,7 @@ const SendConfirmationAgain: React.FC = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={"send-confirmation-form"}>
+          <Form>
             <Typography variant={"h3"}>Send confirmation to email</Typography>
             <Field
               name={"email"}

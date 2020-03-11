@@ -1,0 +1,12 @@
+.send-confirmation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    min-width: 350px;
+    width: 30vw;
+    text-align: center;
+    margin-top: 10vh;
+  }
+}

@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {TextFormField} from "../../../components/";
 import {LoginValues, validLoginSchema} from "../types";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface Props {
   onSubmit: (
@@ -25,7 +25,7 @@ const LoginView: React.FC<Props> = ({ onSubmit, showSendLinkAgain }: Props) => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={"login-form"}>
+          <Form>
             <Typography variant={"h2"}>Login</Typography>
             <Field
               name={"email"}

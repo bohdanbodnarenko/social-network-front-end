@@ -1,11 +1,11 @@
 import React from "react";
-import {useSnackbar} from "notistack";
+import { useSnackbar } from "notistack";
 
 import RegisterView from "./ui/RegisterView";
-import {httpService} from "../../utils/httpService";
-import {FieldError} from "../../shared/constants/interfaces";
-import {RegisterValues} from "./types";
-import {FormikHelpers} from "formik";
+import { httpService } from "../../utils/httpService";
+import { FieldError } from "../../shared/constants/interfaces";
+import { RegisterValues } from "./types";
+import { FormikHelpers } from "formik";
 
 const RegisterConnector = (props: any) => {
   const { enqueueSnackbar } = useSnackbar();

@@ -5,7 +5,7 @@ import {SnackbarProvider} from "notistack";
 
 import {MainRouter} from "./MainRouter";
 import store from "./store/store";
-import "./App.css";
+import "./App.scss";
 import {setupInterceptors} from "./utils/httpService";
 
 const history = createBrowserHistory();

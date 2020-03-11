@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { httpService } from "../../utils/httpService";
 import { FieldError } from "../../shared/constants/interfaces";
 
-import "./styles.css";
+import "./styles.scss";
 
 interface Values {
   password: "";
@@ -91,7 +91,7 @@ const ForgotPassword: React.FC<RouteComponentProps<{
         }
       >
         {({ isSubmitting }) => (
-          <Form className={"forgot-password-form"}>
+          <Form>
             <Typography variant={"h3"}>Forgot Password</Typography>
             {fields}
             <Button
