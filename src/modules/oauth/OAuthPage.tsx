@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { RouteComponentProps, Redirect } from "react-router";
+import { connect, MapDispatchToPropsFunction } from "react-redux";
 
 import { setAccessToken } from "../../store/actions/auth.actions";
 
-const OAuthPage: React.FC<RouteComponentProps> = (props) => {
+const OAuthPage: React.FC<RouteComponentProps & any> = (props) => {
   const [pathToRedirect, setPathToRedirect] = useState<string>("");
   useEffect(() => {
     const token = props.location.search.replace("?token=", "");
     if (token) {
-      setAccessToken(token);
+      props.setToken(token);
       setPathToRedirect("/");
     } else {
       setPathToRedirect("/login");
     }
-  }, [props.location.search]);
+  }, [props]);
 
   if (!pathToRedirect) {
     return <div>Loading...</div>;
@@ -22,4 +23,10 @@ const OAuthPage: React.FC<RouteComponentProps> = (props) => {
   return <Redirect to={pathToRedirect} />;
 };
 
-export default OAuthPage;
+const mapDispatchToProps: MapDispatchToPropsFunction<any, any> = (
+  dispatch
+) => ({
+  setToken: (token: string) => dispatch(setAccessToken(token)),
+});
+
+export default connect(null, mapDispatchToProps)(OAuthPage);
