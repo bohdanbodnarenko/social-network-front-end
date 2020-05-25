@@ -1,10 +1,11 @@
 import * as React from "react";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {Button, Typography} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
-import {TextFormField} from "../../../components/";
-import {LoginValues, validLoginSchema} from "../types";
+import { TextFormField } from "../../../components/";
+import { LoginValues, validLoginSchema } from "../types";
 
 import "./styles.scss";
 
@@ -49,6 +50,9 @@ const LoginView: React.FC<Props> = ({ onSubmit, showSendLinkAgain }: Props) => {
             >
               Login
             </Button>
+            <a href={process.env.REACT_APP_SERVER_URL + "/auth/google"}>
+              <GoogleButton type="light" className={"gbutton"} />
+            </a>
             {showSendLinkAgain && (
               <div style={{ paddingTop: 20 }}>
                 <Link to={"/send-confirmation"}>

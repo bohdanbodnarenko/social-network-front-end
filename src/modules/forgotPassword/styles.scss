@@ -5,8 +5,11 @@
 
   form {
     min-width: 350px;
-    width: 45vw;
+    width: 25vw;
     text-align: center;
     margin-top: 10vh;
+    border: rgba(128, 128, 128, 0.5) 1px solid;
+    padding: 25px;
+    border-radius: 12px;
   }
 }

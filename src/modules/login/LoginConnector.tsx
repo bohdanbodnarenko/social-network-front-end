@@ -1,14 +1,17 @@
-import React, {useState} from "react";
-import {useSnackbar} from "notistack";
-import {connect, MapDispatchToPropsFunction} from "react-redux";
+import React, { useState } from "react";
+import { useSnackbar } from "notistack";
+import { connect, MapDispatchToPropsFunction } from "react-redux";
 
 import RegisterView from "./ui/LoginView";
-import {httpService} from "../../utils/httpService";
-import {FieldError, User} from "../../shared/constants/interfaces";
-import {LoginValues} from "./types";
-import {FormikHelpers} from "formik";
-import {setAccessToken, setCurrentUser} from "../../store/actions/auth.actions";
-import {RouteComponentProps} from "react-router";
+import { httpService } from "../../utils/httpService";
+import { FieldError, User } from "../../shared/constants/interfaces";
+import { LoginValues } from "./types";
+import { FormikHelpers } from "formik";
+import {
+  setAccessToken,
+  setCurrentUser,
+} from "../../store/actions/auth.actions";
+import { RouteComponentProps } from "react-router";
 
 interface Props {
   setCurrentUser: (user: User) => void;
@@ -18,7 +21,7 @@ interface Props {
 const LoginConnector = ({
   history,
   setCurrentUser,
-  setToken
+  setToken,
 }: Props & RouteComponentProps) => {
   const { enqueueSnackbar } = useSnackbar();
   const [showSendLinkAgain, setShowSendLinkAgain] = useState<boolean>(false);
@@ -58,9 +61,11 @@ const LoginConnector = ({
   );
 };
 
-const mapDispatchToProps: MapDispatchToPropsFunction<any, any> = dispatch => ({
+const mapDispatchToProps: MapDispatchToPropsFunction<any, any> = (
+  dispatch
+) => ({
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
-  setToken: (token: string) => dispatch(setAccessToken(token))
+  setToken: (token: string) => dispatch(setAccessToken(token)),
 });
 
 export default connect(null, mapDispatchToProps)(LoginConnector);

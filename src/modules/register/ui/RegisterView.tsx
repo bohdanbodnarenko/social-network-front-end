@@ -1,10 +1,11 @@
 import * as React from "react";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {Button, Typography} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import GoogleButton from "react-google-button";
 
-import {TextFormField} from "../../../components/";
-import {RegisterValues, validUserSchema} from "../types";
+import { TextFormField } from "../../../components/";
+import { RegisterValues, validUserSchema } from "../types";
 
 import "./styles.scss";
 
@@ -60,6 +61,13 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
             >
               Register
             </Button>
+            <a href={process.env.REACT_APP_SERVER_URL + "/auth/google"}>
+              <GoogleButton
+                label={"Sign up with Google"}
+                type="light"
+                className={"gbutton"}
+              />
+            </a>
             <div style={{ paddingTop: 20 }}>
               <Typography>
                 Already a user? Please <Link to={"/login"}>log in</Link>
