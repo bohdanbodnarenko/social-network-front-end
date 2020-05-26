@@ -5,3 +5,7 @@ export const LIGHT_COLOR = "#02C39A";
 export const LIGHTEST_COLOR = "#E3B505";
 export const DARK_BLUE = "#0D276B";
 export const YELLOW = "#ecba41";
+export const LIGHT_BLUE = "#67d1e0";
+export const PURPLE = "#914c6f";
+export const RED = "#e75c62";
+export const GREY = "#eae6ed";
