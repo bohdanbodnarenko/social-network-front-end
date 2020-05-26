@@ -1,0 +1,65 @@
+@import "src/base";
+
+.top-bar-container {
+  height: 9vh;
+  width: 100vw;
+  min-height: 50px;
+  background-color: $whitish;
+  display: flex;
+  align-items: center;
+
+  .search-container {
+    background-color: $dark_blue;
+    float: left;
+    width: 17vw;
+    height: 100%;
+    border-radius: 35px;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 90px;
+    align-items: center;
+  }
+
+  .info-block {
+    float: right;
+    position: absolute;
+    width: 17%;
+    max-width: 300px;
+    min-width: 270px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    right: 15px;
+
+    &_icon {
+      color: $dark_blue;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+    }
+    &__badge {
+    }
+    &_user-block {
+      width: 65%;
+      text-align: center;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      &_username {
+        color: $dark_blue;
+      }
+
+      &_avatar {
+        background-color: $yellow;
+        margin-right: 5px;
+      }
+    }
+
+    .settings-icon {
+      width: 23px;
+      color: $dark_blue;
+    }
+  }
+}

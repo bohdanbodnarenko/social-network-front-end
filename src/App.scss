@@ -1,3 +1,13 @@
+@import "base";
+
 a {
   text-decoration: none;
+}
+
+body {
+  background-color: $whitish;
+  margin: 0;
+  padding: 0;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
