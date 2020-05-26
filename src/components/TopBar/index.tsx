@@ -2,11 +2,12 @@ import React from "react";
 import { fade, InputBase, IconButton, Badge, Avatar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import { IoIosNotificationsOutline, IoIosSettings } from "react-icons/io";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 import "./styles.scss";
 import { makeStyles } from "@material-ui/core/styles";
-import { DARK_BLUE, YELLOW } from "../../shared/constants/colors";
+import SettingsIcon from "../../assets/icons/settings.svg";
+import { DARK_BLUE } from "../../shared/constants/colors";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -65,14 +66,18 @@ export const TopBar: React.FC = () => {
         </div>
       </div>
       <div className={"info-block"}>
-          <IconButton>
-            <Badge badgeContent={4} color={"secondary"}>
-              <IoIosNotificationsOutline className={"info-block_icon"} />
-            </Badge>
-          </IconButton>
-          <IconButton>
-            <IoIosSettings className={"info-block_icon"} />
-          </IconButton>
+        <IconButton>
+          <Badge badgeContent={4} color={"secondary"}>
+            <IoIosNotificationsOutline className={"info-block_icon"} />
+          </Badge>
+        </IconButton>
+        <IconButton>
+          <img
+            className={"info-block_icon"}
+            src={SettingsIcon}
+            alt={"Settings"}
+          />
+        </IconButton>
         <div className={"info-block_user-block"}>
           <Avatar
             alt="Remy Sharp"
