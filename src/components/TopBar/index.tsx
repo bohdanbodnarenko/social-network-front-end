@@ -1,5 +1,12 @@
 import React from "react";
-import { fade, InputBase, IconButton, Badge, Avatar } from "@material-ui/core";
+import {
+  fade,
+  InputBase,
+  IconButton,
+  Badge,
+  Avatar,
+  Button,
+} from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { IoIosNotificationsOutline } from "react-icons/io";
@@ -8,6 +15,8 @@ import "./styles.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import SettingsIcon from "../../assets/icons/settings.svg";
 import { DARK_BLUE } from "../../shared/constants/colors";
+import { connect, MapStateToProps } from "react-redux";
+import { AppStore } from "../../store/store";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -46,53 +55,91 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const TopBar: React.FC = () => {
+interface Props {
+  isAuth?: boolean;
+}
+
+const TopBarComponent: React.FC<Props> = ({ isAuth }) => {
   const classes = useStyles();
   return (
-    <div className={"top-bar-container"}>
-      <div className={"search-container"}>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+    <div
+      className={"top-bar-container"}
+      style={isAuth ? {} : { height: "2vh", padding: "10px 0px" }}
+    >
+      {isAuth ? (
+        <div className={"search-container"}>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search here…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
           </div>
-          <InputBase
-            placeholder="Search here…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ "aria-label": "search" }}
-          />
         </div>
-      </div>
-      <div className={"info-block"}>
-        <IconButton>
-          <Badge badgeContent={4} color={"secondary"}>
-            <IoIosNotificationsOutline className={"info-block_icon"} />
-          </Badge>
-        </IconButton>
-        <IconButton>
-          <img
-            className={"info-block_icon"}
-            src={SettingsIcon}
-            alt={"Settings"}
-          />
-        </IconButton>
-        <div className={"info-block_user-block"}>
-          <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
-            sizes={"small"}
-            className={"info-block_user-block_avatar"}
-          >
-            BB
-          </Avatar>
-          <span className={"info-block_user-block_username"}>Hi,Bohdan</span>
+      ) : (
+        <h3 className={"top-bar-container_logo"}>PeoCon</h3>
+      )}
+      {isAuth ? (
+        <div className={"info-block"}>
           <IconButton>
-            <ExpandMore className={"info-block_icon"} />
+            <Badge badgeContent={4} color={"secondary"}>
+              <IoIosNotificationsOutline className={"info-block_icon"} />
+            </Badge>
           </IconButton>
+          <IconButton>
+            <img
+              className={"info-block_icon"}
+              src={SettingsIcon}
+              alt={"Settings"}
+            />
+          </IconButton>
+          <div className={"info-block_user-block"}>
+            <Avatar
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
+              sizes={"small"}
+              className={"info-block_user-block_avatar"}
+            >
+              BB
+            </Avatar>
+            <span className={"info-block_user-block_username"}>Hi,Bohdan</span>
+            <IconButton>
+              <ExpandMore className={"info-block_icon"} />
+            </IconButton>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className={"top-bar-container_buttons-wrapper"}>
+          <Button
+            variant={"outlined"}
+            color={"primary"}
+            className={"top-bar-container_buttons-wrapper_button"}
+          >
+            Sign in
+          </Button>
+          <Button
+            variant={"contained"}
+            color={"secondary"}
+            className={"top-bar-container_buttons-wrapper_button__primary"}
+          >
+            Get started
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
+
+const mapStateToProps: MapStateToProps<any, Props, AppStore> = ({
+  auth: { isAuth },
+}) => ({
+  isAuth,
+});
+
+export const TopBar = connect(mapStateToProps)(TopBarComponent);
