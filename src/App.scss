@@ -12,3 +12,11 @@ body {
     sans-serif;
   color: $dark_blue;
 }
+
+.auth-routes {
+  padding-left: 5vw;
+
+  @media screen and (max-width: $break-large) {
+    padding-left: 90px;
+  }
+}
