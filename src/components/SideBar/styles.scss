@@ -2,9 +2,9 @@
 
 .side-bar {
   width: 5vw;
-  min-width: 90px;
   height: 100vh;
   position: fixed;
+  top: 0;
   left: 0;
   background-color: #ffffff;
   z-index: 1000;
@@ -13,6 +13,10 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: $break-large) {
+    width: 90px;
+  }
 
   &_logo-wrapper {
     border-bottom: 1px $whitish solid;
