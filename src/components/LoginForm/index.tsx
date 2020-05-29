@@ -4,10 +4,10 @@ import { Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
 
-import { TextFormField } from "../../../components/";
-import { LoginValues, validLoginSchema } from "../types";
-
 import "./styles.scss";
+import { TextFormField } from "../FormFields";
+import { LoginValues } from "../../shared/constants/interfaces";
+import { validLoginSchema } from "../../shared/validations";
 
 interface Props {
   onSubmit: (
@@ -17,7 +17,10 @@ interface Props {
   showSendLinkAgain: boolean;
 }
 
-const LoginView: React.FC<Props> = ({ onSubmit, showSendLinkAgain }: Props) => {
+export const LoginForm: React.FC<Props> = ({
+  onSubmit,
+  showSendLinkAgain,
+}: Props) => {
   return (
     <div className={"login-container"}>
       <Formik
@@ -76,5 +79,3 @@ const LoginView: React.FC<Props> = ({ onSubmit, showSendLinkAgain }: Props) => {
     </div>
   );
 };
-
-export default LoginView;

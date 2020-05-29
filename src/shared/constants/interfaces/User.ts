@@ -10,3 +10,8 @@ export interface User {
   online: boolean;
   lastActive: Date;
 }
+
+export interface LoginValues {
+  email: string;
+  password: string;
+}

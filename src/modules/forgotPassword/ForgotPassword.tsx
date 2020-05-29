@@ -6,12 +6,12 @@ import { useSnackbar } from "notistack";
 
 import { TextFormField } from "../../components/FormFields";
 import { validForgotPasswordSchema } from "./types";
-import { validEmailSchema } from "../login/types";
 import { Link } from "react-router-dom";
 import { httpService } from "../../utils/httpService";
 import { FieldError } from "../../shared/constants/interfaces";
 
 import "./styles.scss";
+import { validEmailSchema } from "../../shared/validations";
 
 interface Values {
   password: "";
@@ -21,11 +21,11 @@ interface Values {
 
 const ForgotPassword: React.FC<RouteComponentProps<{
   recoverId: string;
-}>> = props => {
+}>> = (props) => {
   const {
     match: {
-      params: { recoverId }
-    }
+      params: { recoverId },
+    },
   } = props;
 
   const { enqueueSnackbar } = useSnackbar();

@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { useSnackbar } from "notistack";
 import { connect, MapDispatchToPropsFunction } from "react-redux";
 
-import RegisterView from "./ui/LoginView";
 import { httpService } from "../../utils/httpService";
-import { FieldError, User } from "../../shared/constants/interfaces";
-import { LoginValues } from "./types";
+import {
+  FieldError,
+  LoginValues,
+  User,
+} from "../../shared/constants/interfaces";
 import { FormikHelpers } from "formik";
 import {
   setAccessToken,
   setCurrentUser,
 } from "../../store/actions/auth.actions";
 import { RouteComponentProps } from "react-router";
+import { LoginForm } from "../../components/LoginForm";
 
 interface Props {
   setCurrentUser: (user: User) => void;
@@ -54,10 +57,7 @@ const LoginConnector = ({
     }
   };
   return (
-    <RegisterView
-      showSendLinkAgain={showSendLinkAgain}
-      onSubmit={handleSubmit}
-    />
+    <LoginForm showSendLinkAgain={showSendLinkAgain} onSubmit={handleSubmit} />
   );
 };
 

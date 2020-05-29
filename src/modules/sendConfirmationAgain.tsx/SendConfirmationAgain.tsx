@@ -1,15 +1,15 @@
 import * as React from "react";
-import {useSnackbar} from "notistack";
-import {Field, Form, Formik, FormikHelpers} from "formik";
-import {Button, Typography} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import { useSnackbar } from "notistack";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { Button, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
-import {validEmailSchema} from "../login/types";
-import {TextFormField} from "../../components/FormFields";
-import {httpService} from "../../utils/httpService";
-import {FieldError} from "../../shared/constants/interfaces";
+import { TextFormField } from "../../components/FormFields";
+import { httpService } from "../../utils/httpService";
+import { FieldError } from "../../shared/constants/interfaces";
 
 import "./styles.scss";
+import { validEmailSchema } from "../../shared/validations";
 
 interface Values {
   email: string;
