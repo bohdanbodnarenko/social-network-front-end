@@ -33,29 +33,6 @@ class LandingPage extends Component {
 
   handleSubmit = async (event: any) => {
     event.preventDefault();
-
-    // httpService
-    //   .post("signup", dataToSend)
-    //   .then(() => this.props.close())
-    //   .catch(({ data }) => {
-    //     let emailErrors = [],
-    //       nameErrors = [],
-    //       passwordErrors = [];
-    //     if (Array.isArray(data)) {
-    //       data.forEach((err) => {
-    //         if (err.toLowerCase().includes("email")) {
-    //           emailErrors.push(err);
-    //         }
-    //         if (err.toLowerCase().includes("name")) {
-    //           nameErrors.push(err);
-    //         }
-    //         if (err.toLowerCase().includes("password")) {
-    //           passwordErrors.push(err);
-    //         }
-    //       });
-    //       this.setState({ emailErrors, nameErrors, passwordErrors });
-    //     }
-    //   });
   };
 
   render() {
@@ -73,11 +50,11 @@ class LandingPage extends Component {
         <div className="header">
           <div className="text-box">
             <h1 className="heading-primary">
-              <span className="heading-primary-main">Connector</span>
-              <span className="heading-primary-sub"> Try it now</span>
+              <span className="heading-primary-main">PeoCon</span>
+              <span className="heading-primary-sub">Connect needed people</span>
             </h1>
             <button onClick={this.scrollToRegister} className="btn btn-white">
-              Register now
+              Join us now
             </button>
           </div>
         </div>
@@ -111,7 +88,7 @@ class LandingPage extends Component {
                 <Fade direction={"right"} delay={300}>
                   <div className="composition">
                     <img
-                      src="https://images.unsplash.com/photo-1571366343168-631c5bcca7a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+                      src="https://images.unsplash.com/photo-1519155031214-e8d583928bf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=50"
                       alt="Screenshot 1"
                       className="composition_photo "
                     />
@@ -180,6 +157,7 @@ class LandingPage extends Component {
                     <TextField
                       variant="outlined"
                       label="Name"
+                      color={"secondary"}
                       name="name"
                       error={nameErrors.length > 0}
                       helperText={nameErrors.join(", ")}
@@ -196,6 +174,7 @@ class LandingPage extends Component {
                     <TextField
                       variant="outlined"
                       label="Email"
+                      color={"secondary"}
                       error={emailErrors.length > 0}
                       helperText={emailErrors.join(", ")}
                       name="email"
@@ -211,6 +190,7 @@ class LandingPage extends Component {
                     />
                     <TextField
                       variant="outlined"
+                      color={"secondary"}
                       label="Password"
                       error={passwordErrors.length > 0}
                       helperText={passwordErrors.join(", ")}
@@ -234,7 +214,7 @@ class LandingPage extends Component {
                         ),
                       }}
                     />
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button variant="contained" color="secondary" type="submit">
                       <span className="whiteText">Sign up</span>
                     </Button>
                   </form>
