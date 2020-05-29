@@ -1,8 +1,9 @@
-export const DARK_COLOR = "#264653";
-export const LIGHTER_DARK_COLOR = "#028090";
-export const MIDDLE_COLOR = "#00A896";
-export const LIGHT_COLOR = "#02C39A";
-export const LIGHTEST_COLOR = "#E3B505";
+export const DARK_COLOR = "#05386b";
+export const LIGHTER_DARK_COLOR = "#379683";
+export const MIDDLE_COLOR = "#5cdb95";
+export const LIGHT_COLOR = "#8ee4af";
+export const LIGHTEST_COLOR = "#8ee4af";
+export const WHITISH_COLOR = "#eff5e1";
 export const DARK_BLUE = "#0D276B";
 export const YELLOW = "#ecba41";
 export const LIGHT_BLUE = "#67d1e0";

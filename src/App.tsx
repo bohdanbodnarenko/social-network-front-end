@@ -2,12 +2,14 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { SnackbarProvider } from "notistack";
+import { ThemeProvider } from "@material-ui/core";
 
 import { MainRouter } from "./MainRouter";
 import store from "./store/store";
 import "./App.scss";
 import { setupInterceptors } from "./utils/httpService";
 import { TopBar, SideBar } from "./components/";
+import { theme } from "./theme";
 
 const history = createBrowserHistory();
 
@@ -15,11 +17,13 @@ setupInterceptors(store, history);
 const App = () => {
   return (
     <Provider store={store}>
-      {store.getState().auth.isAuth && <SideBar />}
-      <SnackbarProvider maxSnack={3}>
-        <TopBar />
-        <MainRouter />
-      </SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider maxSnack={3}>
+          <TopBar />
+          {store.getState().auth.isAuth && <SideBar />}
+          <MainRouter />
+        </SnackbarProvider>
+      </ThemeProvider>
     </Provider>
   );
 };
