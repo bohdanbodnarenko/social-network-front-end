@@ -8,7 +8,6 @@ import { MainRouter } from "./MainRouter";
 import store from "./store/store";
 import "./App.scss";
 import { setupInterceptors } from "./utils/httpService";
-import { TopBar, SideBar } from "./components/";
 import { theme } from "./theme";
 
 const history = createBrowserHistory();
@@ -19,8 +18,6 @@ const App = () => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <SnackbarProvider maxSnack={3}>
-          <TopBar />
-          {store.getState().auth.isAuth && <SideBar />}
           <MainRouter />
         </SnackbarProvider>
       </ThemeProvider>
