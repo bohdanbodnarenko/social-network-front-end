@@ -44,7 +44,7 @@ export const SideBar: React.FC = () => {
         style={{
           borderTop: `1.2px ${colors.GREY} solid`,
           position: "absolute",
-          bottom: "5%",
+          bottom: "3%",
           width: "100%",
         }}
       />
