@@ -3,9 +3,9 @@
 .header {
   height: 90vh;
   background-image: linear-gradient(
-      to right bottom,
-      rgba($middle-color, 0.65),
-      rgba($lighter-dark-color, 0.55)
+      to right top,
+      rgba($middle-color, 0.55),
+      rgba($lighter-dark-color, 0.45)
     ),
     url("https://images.unsplash.com/flagged/photo-1554443883-83db889b4007?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80");
   background-size: cover;
@@ -297,7 +297,7 @@
 .register-form {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 46.5%;
   height: 100%;
   position: absolute;
   right: 0;

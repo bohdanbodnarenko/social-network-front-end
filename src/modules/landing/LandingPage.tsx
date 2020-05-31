@@ -1,25 +1,11 @@
 import React, { Component } from "react";
-import {
-  Icon,
-  Button,
-  TextField,
-  InputAdornment,
-  IconButton,
-} from "@material-ui/core";
+import { Icon } from "@material-ui/core";
 import { Fade, Zoom } from "react-awesome-reveal";
 import "./styles.scss";
+import { LoginForm } from "../../components/LoginForm";
 
 class LandingPage extends Component {
   registerNode: null | Element = null;
-  state = {
-    email: "",
-    name: "",
-    password: "",
-    showPassword: false,
-    nameErrors: [],
-    emailErrors: [],
-    passwordErrors: [],
-  };
 
   handleChange = (event: any) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -36,15 +22,6 @@ class LandingPage extends Component {
   };
 
   render() {
-    const {
-      name,
-      email,
-      password,
-      showPassword,
-      nameErrors,
-      emailErrors,
-      passwordErrors,
-    } = this.state;
     return (
       <div>
         <div className="header">
@@ -153,71 +130,13 @@ class LandingPage extends Component {
             <div className="row">
               <Zoom duration={500} delay={500}>
                 <div className="register">
-                  <form className="register-form" onSubmit={this.handleSubmit}>
-                    <TextField
-                      variant="outlined"
-                      label="Name"
-                      color={"secondary"}
-                      name="name"
-                      error={nameErrors.length > 0}
-                      helperText={nameErrors.join(", ")}
-                      onChange={this.handleChange}
-                      value={name}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            {/*<PersonOutlineOutlined className="middleIcon" />*/}
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <TextField
-                      variant="outlined"
-                      label="Email"
-                      color={"secondary"}
-                      error={emailErrors.length > 0}
-                      helperText={emailErrors.join(", ")}
-                      name="email"
-                      value={email}
-                      onChange={this.handleChange}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            {/*<MailOutlineRounded className="middleIcon" />*/}
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <TextField
-                      variant="outlined"
-                      color={"secondary"}
-                      label="Password"
-                      error={passwordErrors.length > 0}
-                      helperText={passwordErrors.join(", ")}
-                      onChange={this.handleChange}
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      value={password}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            {/*<LockRounded />*/}
-                          </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="Toggle password visibility"
-                              // onClick={this.handleClickShowPassword}
-                            />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <Button variant="contained" color="secondary" type="submit">
-                      <span className="whiteText">Sign up</span>
-                    </Button>
-                  </form>
+                  <LoginForm
+                    className={"register-form"}
+                    disableTitle={true}
+                    showSendLinkAgain={false}
+                    onSubmit={this.handleSubmit}
+                    onRegisterClick={() => {}}
+                  />
                 </div>
               </Zoom>
             </div>
