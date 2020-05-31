@@ -4,19 +4,23 @@ import { Button, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
 
-import { TextFormField } from "../../../components/";
-import { RegisterValues, validUserSchema } from "../types";
-
 import "./styles.scss";
+import { RegisterValues } from "../../shared/constants/interfaces";
+import { TextFormField } from "../FormFields";
+import { validUserSchema } from "../../shared/validations";
 
 interface Props {
   onSubmit: (
     values: RegisterValues,
     helpers: FormikHelpers<RegisterValues>
   ) => Promise<void>;
+  onLoginClick: (event: any) => void;
 }
 
-const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
+export const RegisterForm: React.FC<Props> = ({
+  onSubmit,
+  onLoginClick,
+}: Props) => {
   return (
     <div className={"register-container"}>
       <Formik
@@ -26,24 +30,29 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <Typography variant={"h2"}>Registration</Typography>
+            <Typography variant={"h2"} color={"secondary"}>
+              Registration
+            </Typography>
             <Field
               name={"firstName"}
               label={"First Name"}
               component={TextFormField}
               variant="outlined"
+              color={"secondary"}
             />
             <Field
               name={"lastName"}
               label={"Last Name"}
               component={TextFormField}
               variant="outlined"
+              color={"secondary"}
             />
             <Field
               name={"email"}
               label={"Email"}
               component={TextFormField}
               variant="outlined"
+              color={"secondary"}
             />
             <Field
               name={"password"}
@@ -51,6 +60,7 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
               type={"password"}
               component={TextFormField}
               variant="outlined"
+              color={"secondary"}
             />
             <Button
               disabled={isSubmitting}
@@ -70,7 +80,10 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
             </a>
             <div style={{ paddingTop: 20 }}>
               <Typography>
-                Already a user? Please <Link to={"/login"}>log in</Link>
+                Already a user? Please{" "}
+                <Link to={"/"} onClick={onLoginClick}>
+                  log in
+                </Link>
               </Typography>
             </div>
           </Form>
@@ -79,5 +92,3 @@ const RegisterView: React.FC<Props> = ({ onSubmit }: Props) => {
     </div>
   );
 };
-
-export default RegisterView;
