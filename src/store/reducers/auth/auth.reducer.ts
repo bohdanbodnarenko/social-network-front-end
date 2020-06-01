@@ -1,35 +1,47 @@
-import {AnyAction} from "redux";
-
-import * as types from "../../actions/actionTypes";
-import {AuthState} from "./types";
+import * as types from "../../actions/auth/actionTypes";
+import { AuthActionTypes } from "../../actions/auth/actionTypes";
+import { User } from "../../../shared/constants/interfaces";
 
 const currentUser = window.localStorage.getItem("currentUser"),
   token = window.localStorage.getItem("accessToken");
 
+export interface AuthState {
+  accessToken: string;
+  isAuth: boolean;
+  currentUser: User | null;
+}
+
 const initialState: AuthState = {
   accessToken: token || "",
   isAuth: !!token,
-  currentUser: currentUser ? JSON.parse(currentUser) : null
+  currentUser: currentUser ? JSON.parse(currentUser) : null,
 };
 
-export const auth = (state = initialState, action: AnyAction) => {
+export const auth = (
+  state = initialState,
+  action: AuthActionTypes
+): typeof initialState => {
   switch (action.type) {
-    case types.LOGIN_SUCCESS:
+    case types.SET_ACCESS_TOKEN:
       return {
         ...state,
         isAuth: true,
-        accessToken: action.payload
+        accessToken: action.payload,
       };
 
     case types.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,
-        isAuth: true
+        isAuth: true,
       };
 
     case types.LOGOUT:
-      return initialState;
+      return {
+        accessToken: "",
+        isAuth: false,
+        currentUser: null,
+      };
 
     default:
       return state;
