@@ -1,6 +1,5 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import store from "./store/store";
 
 import ForgotPassword from "./modules/forgotPassword/ForgotPassword";
 import LandingPage from "./modules/landing/LandingPage";
@@ -8,14 +7,18 @@ import SendConfirmationAgain from "./modules/sendConfirmationAgain.tsx/SendConfi
 import OAuthPage from "./modules/oauth/OAuthPage";
 import { TopBar } from "./components/TopBar";
 import { SideBar } from "./components/SideBar";
+import { reduxConnect } from "./shared/hoc/reduxConnect";
 
-export const MainRouter = () => {
+interface Props {
+  isAuth?: boolean;
+}
+
+export const MainRouter: React.FC<Props> = ({ isAuth }) => {
   return (
     <BrowserRouter>
       <TopBar />
-      <div className={store.getState().auth.isAuth ? "auth-routes" : ""}>
-        {store.getState().auth.isAuth && <SideBar />}
-
+      <div className={isAuth ? "auth-routes" : ""}>
+        {isAuth && <SideBar />}
         <Switch>
           <Route
             path="/forgot-password/:recoverId"
@@ -30,3 +33,13 @@ export const MainRouter = () => {
     </BrowserRouter>
   );
 };
+
+interface LinkStateProps {
+  isAuth: boolean;
+}
+
+reduxConnect<Props, LinkStateProps, any>(
+  MainRouter,
+  null,
+  ({ auth: { isAuth } }) => ({ isAuth })
+);
