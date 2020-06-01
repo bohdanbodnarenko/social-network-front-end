@@ -1,8 +1,8 @@
 import axios from "axios";
-import {Store} from "redux";
-import {History} from "history";
+import { Store } from "redux";
+import { History } from "history";
 
-import {logout} from "../store/actions/auth.actions";
+import { logout } from "../store/actions/auth/auth.actions";
 
 const badAuthStatuses = [401, 403];
 
@@ -11,8 +11,8 @@ export const httpService = axios.create({
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`
-  }
+    Authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
+  },
 });
 
 export const updateHttpServiceToken = (token: string) => {
@@ -21,17 +21,17 @@ export const updateHttpServiceToken = (token: string) => {
 
 export const setupInterceptors = (store: Store, history: History) => {
   httpService.interceptors.response.use(
-    response => {
+    (response) => {
       return Promise.resolve(response);
     },
-    error => {
+    (error) => {
       if (!error.response) {
         return Promise.reject({ data: { error: "Server error" } });
       }
       if (badAuthStatuses.includes(error.response.status)) {
         if (store.getState().auth.isAuth) {
           store.dispatch(logout());
-          history.push("/login");
+          history.push("/");
         }
         return Promise.reject(error.response);
       } else {
