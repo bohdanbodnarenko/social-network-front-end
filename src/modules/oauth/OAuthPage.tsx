@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RouteComponentProps, Redirect } from "react-router";
 import { connect, MapDispatchToPropsFunction } from "react-redux";
 
-import { setAccessToken } from "../../store/actions/auth.actions";
+import { setAccessToken } from "../../store/actions/auth/auth.actions";
 
 const OAuthPage: React.FC<RouteComponentProps & any> = (props) => {
   const [pathToRedirect, setPathToRedirect] = useState<string>("");
