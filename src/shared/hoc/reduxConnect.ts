@@ -1,13 +1,13 @@
-import { connect, MapDispatchToProps } from "react-redux";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 
-import { AppStore } from "../../store/store";
+import { AppState } from "../../store/store";
 
 const mapStateToProps = (state: any) => state;
 
-export const reduxConnect = (
+export const reduxConnect = <Props, LinkStateProps, LinkDispatchProps>(
   WrappedComponent: any,
-  actions: MapDispatchToProps<any, AppStore>,
-  state: (state: AppStore) => any = mapStateToProps
+  actions: MapDispatchToProps<LinkDispatchProps, Props>,
+  state: MapStateToProps<LinkStateProps, Props, AppState> = mapStateToProps
 ) => {
   return connect(state, actions)(WrappedComponent);
 };
