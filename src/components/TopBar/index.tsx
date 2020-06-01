@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  fade,
   InputBase,
   IconButton,
   Badge,
@@ -13,17 +12,11 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { RouteComponentProps, withRouter } from "react-router";
 import { useSnackbar } from "notistack";
 import { FormikHelpers } from "formik";
+import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 
 import "./styles.scss";
-import { makeStyles } from "@material-ui/core/styles";
 import SettingsIcon from "../../assets/icons/settings.svg";
-import { DARK_BLUE } from "../../shared/constants/colors";
-import {
-  connect,
-  MapDispatchToPropsFunction,
-  MapStateToProps,
-} from "react-redux";
-import { AppStore } from "../../store/store";
+import { AppState } from "../../store/store";
 import { CustomModal } from "../CustomModal";
 import {
   FieldError,
@@ -34,65 +27,33 @@ import {
 import {
   setAccessToken,
   setCurrentUser,
-} from "../../store/actions/auth.actions";
+} from "../../store/actions/auth/auth.actions";
 import { LoginForm } from "../LoginForm";
 import { httpService } from "../../utils/httpService";
 import { RegisterForm } from "../RegisterForm";
-
-const useStyles = makeStyles((theme) => ({
-  search: {
-    position: "relative",
-    backgroundColor: fade(theme.palette.common.white, 0.9),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.95),
-    },
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
-    width: "100%",
-    height: "45%",
-    borderRadius: "45px",
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    right: 0,
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-    height: "100%",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(1)}px)`,
-    transition: theme.transitions.create("width"),
-    height: "100%",
-    width: "100%",
-    color: DARK_BLUE,
-  },
-}));
+import { fetchMe } from "../../store/actions/auth/auth.actions";
+import { useStyles } from "./styles";
 
 interface Props {
   isAuth?: boolean;
-  setCurrentUser?: (user: User) => void;
-  setToken?: (token: string) => void;
+  currentUser?: User | null;
 }
 
-const TopBarComponent: React.FC<Props & RouteComponentProps> = ({
-  isAuth,
-  setToken,
-  setCurrentUser,
-  history,
-}) => {
-  const classes = useStyles();
+const TopBarComponent: React.FC<
+  Props & LinkDispatchProps & RouteComponentProps
+> = ({ isAuth, currentUser, setToken, setCurrentUser, history, fetchMe }) => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [showSendLinkAgain, setShowSendLinkAgain] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
+  const classes = useStyles();
+
+  useEffect(() => {
+    if (isAuth && !currentUser && fetchMe) {
+      console.log("Should trigger");
+      fetchMe();
+    }
+  }, [isAuth, currentUser, fetchMe]);
 
   const toggleLoginModal = () => {
     setLoginModalOpen(!loginModalOpen);
@@ -226,17 +187,21 @@ const TopBarComponent: React.FC<Props & RouteComponentProps> = ({
               />
             </IconButton>
             <div className={"info-block_user-block"}>
-              <Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sizes={"small"}
-                className={"info-block_user-block_avatar"}
-              >
-                BB
-              </Avatar>
-              <span className={"info-block_user-block_username"}>
-                Hi,Bohdan
-              </span>
+              {currentUser && (
+                <Avatar
+                  alt="Remy Sharp"
+                  src={currentUser.imageUrl}
+                  sizes={"small"}
+                  className={"info-block_user-block_avatar"}
+                >
+                  {currentUser.imageUrl ? undefined : "BB"}
+                </Avatar>
+              )}
+              {currentUser && (
+                <span className={"info-block_user-block_username"}>
+                  Hi,{currentUser?.firstName}
+                </span>
+              )}
               <IconButton>
                 <ExpandMore className={"info-block_icon"} />
               </IconButton>
@@ -266,17 +231,30 @@ const TopBarComponent: React.FC<Props & RouteComponentProps> = ({
   );
 };
 
-const mapStateToProps: MapStateToProps<any, Props, AppStore> = ({
-  auth: { isAuth },
+interface LinkStateProps {
+  isAuth: boolean;
+  currentUser: User | null;
+}
+
+interface LinkDispatchProps {
+  setCurrentUser: (user: User) => void;
+  setToken: (token: string) => void;
+  fetchMe: () => void;
+}
+
+const mapStateToProps: MapStateToProps<LinkStateProps, Props, AppState> = ({
+  auth: { isAuth, currentUser },
 }) => ({
   isAuth,
+  currentUser,
 });
 
-const mapDispatchToProps: MapDispatchToPropsFunction<any, any> = (
+const mapDispatchToProps: MapDispatchToProps<LinkDispatchProps, Props> = (
   dispatch
 ) => ({
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
   setToken: (token: string) => dispatch(setAccessToken(token)),
+  fetchMe: () => dispatch(fetchMe() as any),
 });
 
 export const TopBar = connect(
