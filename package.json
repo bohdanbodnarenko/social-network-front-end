@@ -17,7 +17,6 @@
     "axios": "^0.19.2",
     "formik": "^2.1.4",
     "history": "^4.10.1",
-    "netlify-cli": "^2.52.0",
     "node-sass": "^4.13.1",
     "notistack": "^0.9.9",
     "react": "^16.13.0",
@@ -71,6 +70,7 @@
     "@types/styled-components": "^5.0.1",
     "@types/yup": "^0.26.32",
     "cypress": "^4.1.0",
+    "netlify-cli": "^2.53.0",
     "prettier": "^2.0.5",
     "source-map-explorer": "^2.3.1"
   }

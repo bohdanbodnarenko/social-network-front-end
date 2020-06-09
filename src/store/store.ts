@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 
 export type AppState = ReturnType<typeof rootReducer>;
 
-const store = createStore(
+const store = createStore<AppState, AppActions, any, any>(
   rootReducer,
   process.env.REACT_APP_PROD === "true"
     ? applyMiddleware(
