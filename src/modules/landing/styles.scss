@@ -193,31 +193,31 @@
 
 .paragraph {
   font-size: 1.25rem;
-}
 
-.paragraph:not(:last-child) {
-  margin-bottom: 3rem;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 }
 
 .composition {
   position: relative;
   padding-left: 50px;
-}
 
-.composition_photo {
-  width: 88%;
-  box-shadow: 0 1.5rem 4rem rgba($dark-color, 0.185);
-  border-radius: 7px;
-  transition: all 0.2s;
-  outline-offset: 1.4rem;
-  animation-name: fade;
-  animation-duration: 0.9s;
-  animation-timing-function: ease-out;
-}
+  &_photo {
+    width: 88%;
+    box-shadow: 0 1.5rem 4rem rgba($dark-color, 0.185);
+    border-radius: 7px;
+    transition: all 0.2s;
+    outline-offset: 1.4rem;
+    animation-name: fade;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
 
-.composition_photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 1.6rem 4rem rgba($dark-color, 0.285);
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 1.6rem 4rem rgba($dark-color, 0.285);
+    }
+  }
 }
 
 .features {
@@ -232,10 +232,9 @@
   transform: skewY(-7deg);
   margin-top: -10rem;
   box-shadow: 0 1.6rem 4rem rgba(124, 75, 196, 0.185);
-}
-
-.features > * {
-  transform: skewY(7deg);
+  & > * {
+    transform: skewY(7deg);
+  }
 }
 
 .feature-box {

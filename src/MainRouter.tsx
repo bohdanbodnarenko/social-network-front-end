@@ -13,7 +13,7 @@ interface Props {
   isAuth?: boolean;
 }
 
-export const MainRouter: React.FC<Props> = ({ isAuth }) => {
+const Router: React.FC<Props> = ({ isAuth }) => {
   return (
     <BrowserRouter>
       <TopBar />
@@ -38,8 +38,8 @@ interface LinkStateProps {
   isAuth: boolean;
 }
 
-reduxConnect<Props, LinkStateProps, any>(
-  MainRouter,
+export const MainRouter = reduxConnect<Props, LinkStateProps, any>(
+  Router,
   null,
   ({ auth: { isAuth } }) => ({ isAuth })
 );

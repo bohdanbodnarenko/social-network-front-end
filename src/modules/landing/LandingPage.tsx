@@ -38,12 +38,18 @@ class LandingPage extends Component {
         <main>
           <section className="section-about">
             <div className="center-text margin-bottom">
-              <Fade direction={"top"}>
+              <Fade triggerOnce={true} direction={"top"}>
                 <h2 className="heading-secondary">New modern Social Network</h2>
               </Fade>
             </div>
             <div className="row">
-              <Fade duration={500} direction={"left"} delay={100} cascade>
+              <Fade
+                triggerOnce={true}
+                duration={500}
+                direction={"left"}
+                delay={100}
+                cascade
+              >
                 <div>
                   <h3 className="heading-tertiary">
                     Be able to share information
@@ -62,7 +68,7 @@ class LandingPage extends Component {
                 </div>
               </Fade>
               <div>
-                <Fade direction={"right"} delay={300}>
+                <Fade triggerOnce={true} direction={"right"} delay={300}>
                   <div className="composition">
                     <img
                       src="https://images.unsplash.com/photo-1519155031214-e8d583928bf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=50"
@@ -119,7 +125,7 @@ class LandingPage extends Component {
             </div>
           </section>
           <section className="registration-section">
-            <Zoom duration={500}>
+            <Zoom duration={500} triggerOnce={true}>
               <h2
                 ref={(node) => (this.registerNode = node)}
                 className="heading-secondary"
@@ -128,7 +134,7 @@ class LandingPage extends Component {
               </h2>
             </Zoom>
             <div className="row">
-              <Zoom duration={500} delay={500}>
+              <Zoom triggerOnce={true} duration={500} delay={500}>
                 <div className="register">
                   <LoginForm
                     className={"register-form"}
