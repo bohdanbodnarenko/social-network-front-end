@@ -2,6 +2,7 @@
 
 .header {
   height: 90vh;
+  position: relative;
   background-image: linear-gradient(
       to right top,
       rgba($middle-color, 0.55),
@@ -48,6 +49,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 60%;
   transform: translate(-50%, -50%);
   text-align: center;
 }
@@ -184,6 +186,10 @@
   padding: 0 20px;
 }
 
+.tertiary-container {
+  padding-left: 20px;
+}
+
 .heading-tertiary {
   font-size: 2rem;
   font-weight: 700;
@@ -242,7 +248,7 @@
   font-size: 1.5rem;
   padding: 2.5rem;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 8px;
   box-shadow: 0 1.5rem 4rem rgba(19, 19, 19, 0.5);
   margin: 0 15px;
   color: #464646;
@@ -264,8 +270,9 @@
     rgba($dark-color, 0.75)
   );
   background-clip: text;
-  color: transparent;
+  color: rgba($lighter-dark-color, 0.75);
   display: inline-block;
+  font-size: 5rem;
 }
 
 .registration-section {
@@ -278,6 +285,7 @@
 .register {
   margin-top: 20px;
   position: relative;
+  border-radius: 20px;
   background-image: linear-gradient(
       -80deg,
       rgba($lighter-dark-color, 0.95) 0%,
@@ -291,18 +299,18 @@
   background-repeat: no-repeat;
   height: 35rem;
   width: 80vw;
-}
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  width: 46.5%;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  justify-content: space-evenly;
-  margin: 0 20px;
-  transition: all 0.2s ease-in-out;
+  &-form {
+    display: flex;
+    flex-direction: column;
+    width: 46.5%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    justify-content: space-evenly;
+    margin: 0 20px;
+    transition: all 0.2s ease-in-out;
+  }
 }
 
 @media (max-width: 950px) {
@@ -344,9 +352,8 @@
         transparent 100%
       ),
       url("https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1347&q=80");
-  }
-
-  .register-form {
-    width: 90%;
+    &-form {
+      width: 90%;
+    }
   }
 }

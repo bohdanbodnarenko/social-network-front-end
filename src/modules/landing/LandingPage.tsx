@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Icon } from "@material-ui/core";
+import { IoIosGlobe, IoIosHeart, IoIosPeople } from "react-icons/io";
+import { FaSmile } from "react-icons/fa";
 import { Fade, Zoom } from "react-awesome-reveal";
 import "./styles.scss";
 import { LoginForm } from "../../components/LoginForm";
@@ -50,7 +51,7 @@ class LandingPage extends Component {
                 delay={100}
                 cascade
               >
-                <div>
+                <div className={"tertiary-container"}>
                   <h3 className="heading-tertiary">
                     Be able to share information
                   </h3>
@@ -83,9 +84,7 @@ class LandingPage extends Component {
           <section className="features">
             <div className="row">
               <div className="feature-box">
-                <Icon style={{ fontSize: "5rem" }} className="feature_icon">
-                  public
-                </Icon>
+                <IoIosGlobe className="feature_icon" />
                 <h3 className="heading-tertiary">
                   Explore friends over the world
                 </h3>
@@ -94,27 +93,21 @@ class LandingPage extends Component {
                 </p>
               </div>
               <div className="feature-box">
-                <Icon style={{ fontSize: "5rem" }} className="feature_icon">
-                  mood
-                </Icon>
+                <FaSmile className="feature_icon" />
                 <h3 className="heading-tertiary">Have fun with other people</h3>
                 <p className="feature-">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </p>
               </div>
               <div className="feature-box">
-                <Icon style={{ fontSize: "5rem" }} className="feature_icon">
-                  thumb_up_alt
-                </Icon>
+                <IoIosHeart className="feature_icon" />
                 <h3 className="heading-tertiary">Everybody loves us</h3>
                 <p className="feature-">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit
                 </p>
               </div>
               <div className="feature-box">
-                <Icon style={{ fontSize: "5rem" }} className="feature_icon ">
-                  poll
-                </Icon>
+                <IoIosPeople className="feature_icon" />
                 <h3 className="heading-tertiary">
                   Fast growing social network
                 </h3>
