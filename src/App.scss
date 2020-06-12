@@ -4,19 +4,23 @@ a {
   text-decoration: none;
 }
 
+:root {
+  font-size: 16px;
+}
+
 body {
   background-color: $whitish;
   margin: 0;
   padding: 0;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
     sans-serif;
-  color: $dark_blue;
+  color: #050505;
 }
 
 .auth-routes {
-  padding-left: 5vw;
-
-  @media screen and (max-width: $break-large) {
-    padding-left: 90px;
+  margin-top: $top-bar-height;
+  padding-left: $side-bar-width;
+  @media screen and (max-width: $break-small) {
+    padding-left: 0;
   }
 }
