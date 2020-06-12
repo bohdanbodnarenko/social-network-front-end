@@ -5,14 +5,14 @@ import { DARK_BLUE } from "../../shared/constants/colors";
 export const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
-    backgroundColor: fade(theme.palette.common.white, 0.9),
+    backgroundColor: fade("#F0F2F5", 0.9),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.95),
+      backgroundColor: fade("#F0F2F5", 0.95),
     },
-    marginRight: theme.spacing(3),
-    marginLeft: theme.spacing(3),
+    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
     width: "100%",
-    height: "45%",
+    height: "67%",
     borderRadius: "45px",
   },
   searchIcon: {

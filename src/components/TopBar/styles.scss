@@ -1,12 +1,20 @@
 @import "src/base";
 
 .top-bar-container {
-  height: 9vh;
+  height: $top-bar-height;
   width: 100vw;
   min-height: 50px;
-  background-color: $whitish;
+  background-color: rgba(#fff, 0.97);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  -webkit-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+  -moz-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+  box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
 
   &_buttons-wrapper {
     float: right;
@@ -29,23 +37,19 @@
     }
   }
 
-  &_logo {
-    font-weight: bold;
-    font-size: 40px;
-    padding-left: 40px;
-    margin-left: 84px;
-  }
-
   .search-container {
-    background-color: $dark_blue;
-    float: left;
-    width: 22vw;
+    width: 20%;
     height: 100%;
     border-radius: 35px;
     display: flex;
     justify-content: flex-end;
-    padding-left: 90px;
     align-items: center;
+
+    &_logo {
+      font-weight: bold;
+      padding-left: 1rem;
+      width: 2.75rem;
+    }
   }
 
   .info-block {
@@ -83,11 +87,6 @@
         background-color: $yellow;
         margin-right: 5px;
       }
-    }
-
-    .settings-icon {
-      width: 23px;
-      color: $dark_blue;
     }
   }
 }

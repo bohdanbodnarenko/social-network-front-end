@@ -10,12 +10,14 @@ import SearchIcon from "@material-ui/icons/Search";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { RouteComponentProps, withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { FormikHelpers } from "formik";
 import { connect, MapDispatchToProps, MapStateToProps } from "react-redux";
 
 import "./styles.scss";
-import SettingsIcon from "../../assets/icons/settings.svg";
+import { ReactComponent as Logo } from "../../assets/icons/logo.svg";
+import { ReactComponent as SettingsIcon } from "../../assets/icons/settings.svg";
 import { AppState } from "../../store/store";
 import { CustomModal } from "../CustomModal";
 import {
@@ -50,7 +52,6 @@ const TopBarComponent: React.FC<
 
   useEffect(() => {
     if (isAuth && !currentUser && fetchMe) {
-      console.log("Should trigger");
       fetchMe();
     }
   }, [isAuth, currentUser, fetchMe]);
@@ -103,7 +104,6 @@ const TopBarComponent: React.FC<
     try {
       const { data } = await httpService.post("/login", values);
       if (data) {
-        console.log(data);
         const { user, token } = data;
         if (setCurrentUser && setToken) {
           setCurrentUser(user);
@@ -155,6 +155,9 @@ const TopBarComponent: React.FC<
       >
         {isAuth ? (
           <div className={"search-container"}>
+            <Link to={"/"}>
+              <Logo className={"search-container_logo"} />
+            </Link>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
@@ -180,11 +183,7 @@ const TopBarComponent: React.FC<
               </Badge>
             </IconButton>
             <IconButton>
-              <img
-                className={"info-block_icon"}
-                src={SettingsIcon}
-                alt={"Settings"}
-              />
+              <SettingsIcon className={"info-block_icon"} />
             </IconButton>
             <div className={"info-block_user-block"}>
               {currentUser && (
@@ -194,12 +193,14 @@ const TopBarComponent: React.FC<
                   sizes={"small"}
                   className={"info-block_user-block_avatar"}
                 >
-                  {currentUser.imageUrl ? undefined : "BB"}
+                  {currentUser.imageUrl
+                    ? undefined
+                    : currentUser?.firstName[0] + currentUser?.lastName[0]}
                 </Avatar>
               )}
               {currentUser && (
                 <span className={"info-block_user-block_username"}>
-                  Hi,{currentUser?.firstName}
+                  Hi, {currentUser?.firstName}
                 </span>
               )}
               <IconButton>
