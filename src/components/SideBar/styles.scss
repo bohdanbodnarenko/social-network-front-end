@@ -3,25 +3,24 @@
 .side-bar {
   position: fixed;
   background-color: #ffffff;
-  z-index: 1000;
+  z-index: 900;
   border-bottom-right-radius: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  padding: 0 0.8rem;
+
   &_list {
-    margin-top: 80%;
+    margin-top: 50%;
     list-style: none;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
+    padding: 0 0.8rem;
   }
 
   &_nav-link {
     width: 80%;
-    border-bottom-right-radius: 5px;
     padding: 0.6rem 0.7rem;
     display: flex;
     align-items: center;
@@ -29,10 +28,16 @@
     cursor: pointer;
     transition: 0.2s ease-in-out;
     margin: 0.6rem 0;
+    border-radius: 35px;
+    border: transparent 1px solid;
+
+    svg {
+      transition: 0.3s ease-out;
+    }
 
     &__active {
       border: $light-grey 1px solid;
-      border-radius: 35px;
+
       svg {
         fill: $primary;
       }

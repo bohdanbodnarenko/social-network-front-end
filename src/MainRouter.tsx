@@ -8,6 +8,10 @@ import OAuthPage from "./modules/oauth/OAuthPage";
 import { TopBar } from "./components/TopBar";
 import { SideBar } from "./components/SideBar";
 import { reduxConnect } from "./shared/hoc/reduxConnect";
+import People from "./modules/people/People";
+import Categories from "./modules/categories/Categories";
+import Feed from "./modules/feed/Feed";
+import Messages from "./modules/messages/Messages";
 
 interface Props {
   isAuth?: boolean;
@@ -27,6 +31,10 @@ const Router: React.FC<Props> = ({ isAuth }) => {
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/send-confirmation" component={SendConfirmationAgain} />
           <Route path="/oauth" component={OAuthPage} />
+          <Route path="/people/:personId" component={People} />
+          <Route path="/categories/:categoryId" component={Categories} />
+          <Route path="/feed" component={Feed} />
+          <Route path="/messages" component={Messages} />
           <Route path="/" exact component={LandingPage} />
         </Switch>
       </div>
