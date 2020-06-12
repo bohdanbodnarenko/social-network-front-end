@@ -1,42 +1,47 @@
 @import "src/base";
 
 .side-bar {
-  width: 5vw;
-  height: 100vh;
   position: fixed;
-  top: 0;
-  left: 0;
   background-color: #ffffff;
   z-index: 1000;
-  border-top-right-radius: 45px;
   border-bottom-right-radius: 15px;
   text-align: center;
   display: flex;
   flex-direction: column;
-
-  @media screen and (max-width: $break-large) {
-    width: 90px;
-  }
-
-  &_logo-wrapper {
-    border-bottom: 1px $whitish solid;
-    padding: 26.5px 0;
-  }
-
-  &_middle-block {
+  padding: 0 0.8rem;
+  &_list {
     margin-top: 80%;
-  }
-
-  &_element {
-    border-bottom: 1.2px $whitish solid;
-    border-bottom-right-radius: 5px;
-    padding: 30.5px 0;
+    list-style: none;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    height: 100%;
+  }
+
+  &_nav-link {
+    width: 80%;
+    border-bottom-right-radius: 5px;
+    padding: 0.6rem 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     cursor: pointer;
     transition: 0.2s ease-in-out;
+    margin: 0.6rem 0;
+
+    &__active {
+      border: $light-grey 1px solid;
+      border-radius: 35px;
+      svg {
+        fill: $primary;
+      }
+
+      &_titile {
+        font-weight: bold;
+        color: $black;
+      }
+    }
 
     &:hover {
       background-color: #f7f7ff;
@@ -53,42 +58,34 @@
 
     &_title {
       letter-spacing: 0.6px;
-      font-size: 12px;
-    }
-
-    &_icon-block {
-      height: 40px;
-      width: 40px;
-      border-radius: 10px;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 10px;
-
-      svg {
-        width: 25px;
-        height: 25px;
-      }
+      color: $dark-grey;
+      font-weight: 500;
+      font-size: 0.9rem;
     }
 
     svg {
-      fill: white;
-    }
-
-    &__logout {
-      border-top: 1px $whitish solid;
-      border-bottom: 1px $whitish solid;
-      padding: 40.5px 0;
-      position: absolute;
-      bottom: 5%;
-      width: 100%;
+      width: 1.8rem;
+      height: 1.8rem;
+      color: $dark-grey;
+      margin-left: 0.5rem;
+      margin-right: 0.7rem;
     }
   }
+}
 
-  &_logo {
-    font-weight: bold;
-    color: $dark_blue;
-    font-size: 28px;
+@media only screen and (max-width: 600px) {
+  .side-bar {
+    bottom: 0;
+    width: 100vw;
+    height: 5rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .side-bar {
+    width: $side-bar-width;
+    top: $top-bar-height;
+    left: 0;
+    height: 100vh - $top-bar-height;
   }
 }

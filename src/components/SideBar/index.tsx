@@ -1,53 +1,35 @@
 import React from "react";
 
 import {
-  IoMdPeople,
-  IoIosList,
+  IoIosListBox,
   IoIosChatbubbles,
   IoIosLogOut,
+  IoMdPeople,
 } from "react-icons/io";
 
 import "./styles.scss";
 
-import { SideBarElement } from "./SideBarElement";
-import * as colors from "../../shared/constants/colors";
-
 export const SideBar: React.FC = () => {
   return (
     <div className={"side-bar"}>
-      <div className={"side-bar_logo-wrapper"}>
-        <span className={"side-bar_logo"}>PEO</span>
-      </div>
-
-      <div className={"side-bar_middle-block"}>
-        <SideBarElement
-          icon={IoMdPeople}
-          iconColor={colors.LIGHT_BLUE}
-          text={"People"}
-        />{" "}
-        <SideBarElement
-          icon={IoIosList}
-          iconColor={colors.YELLOW}
-          text={"Categories"}
-        />{" "}
-        <SideBarElement
-          icon={IoIosChatbubbles}
-          iconColor={colors.PURPLE}
-          text={"Messages"}
-        />
-      </div>
-
-      <SideBarElement
-        icon={IoIosLogOut}
-        iconColor={colors.RED}
-        text={"Log Out"}
-        style={{
-          borderTop: `1.2px ${colors.GREY} solid`,
-          position: "absolute",
-          bottom: "3%",
-          width: "100%",
-        }}
-      />
+      <ul className={"side-bar_list"}>
+        <li className={"side-bar_nav-link side-bar_nav-link__active"}>
+          <IoMdPeople />
+          <span className={"side-bar_nav-link_title"}>People</span>
+        </li>
+        <li className={"side-bar_nav-link"}>
+          <IoIosListBox />
+          <span className={"side-bar_nav-link_title"}>Categories</span>
+        </li>
+        <li className={"side-bar_nav-link"}>
+          <IoIosChatbubbles />
+          <span className={"side-bar_nav-link_title"}>Messages</span>
+        </li>
+        <li className={"side-bar_nav-link"}>
+          <IoIosLogOut />
+          <span className={"side-bar_nav-link_title"}>Logout</span>
+        </li>
+      </ul>
     </div>
   );
 };
