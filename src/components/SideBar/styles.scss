@@ -7,7 +7,7 @@
   border-bottom-right-radius: 15px;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  transition: 0.1s ease-in;
 
   &_list {
     margin-top: 50%;
@@ -29,7 +29,6 @@
     transition: 0.2s ease-in-out;
     margin: 0.6rem 0;
     border-radius: 35px;
-    border: transparent 1px solid;
 
     svg {
       transition: 0.3s ease-out;
@@ -41,11 +40,6 @@
       svg {
         fill: $primary;
       }
-
-      &_titile {
-        font-weight: bold;
-        color: $black;
-      }
     }
 
     &:hover {
@@ -54,10 +48,6 @@
       &_icon-block {
         height: 43px;
         width: 43px;
-      }
-
-      &_title {
-        font-size: 13px;
       }
     }
 
@@ -78,19 +68,51 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: $break-small) {
   .side-bar {
     bottom: 0;
     width: 100vw;
     height: 5rem;
+
+    &_list {
+      margin-top: 0;
+      flex-direction: row;
+      width: 100vw;
+      justify-content: space-between;
+    }
+
+    &_nav-link {
+      justify-content: center;
+      width: 15%;
+      border: none;
+
+      &__active {
+        border: none;
+      }
+
+      &_title {
+        display: none;
+      }
+    }
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: $break-small) {
   .side-bar {
     width: $side-bar-width;
     top: $top-bar-height;
     left: 0;
     height: 100vh - $top-bar-height;
+
+    &_nav-link {
+      border: transparent 1px solid;
+
+      &_title {
+        display: block;
+      }
+      &__active {
+        border: $light-grey 1px solid;
+      }
+    }
   }
 }
