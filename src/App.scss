@@ -6,6 +6,7 @@ a {
 
 :root {
   font-size: 16px;
+  --speed: 300ms;
 }
 
 body {
@@ -17,10 +18,18 @@ body {
   color: #050505;
 }
 
-.auth-routes {
+.routes {
   margin-top: $top-bar-height;
-  padding-left: $side-bar-width;
-  @media screen and (max-width: $break-small) {
-    padding-left: 0;
+
+  &__auth {
+    margin-top: $top-bar-height;
+    padding-left: $side-bar-width;
+    @media screen and (max-width: $break-small) {
+      padding-left: 0;
+    }
+
+    @media screen and (max-height: 800px) {
+      margin-top: 60px;
+    }
   }
 }

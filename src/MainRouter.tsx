@@ -21,8 +21,8 @@ const Router: React.FC<Props> = ({ isAuth }) => {
   return (
     <BrowserRouter>
       <TopBar />
-      <div className={isAuth ? "auth-routes" : ""}>
-        {isAuth && <SideBar />}
+      {isAuth && <SideBar />}
+      <div className={isAuth ? "routes__auth" : "routes"}>
         <Switch>
           <Route
             path="/forgot-password/:recoverId"
