@@ -2,8 +2,8 @@
 
 .top-bar-container {
   height: $top-bar-height;
-  width: 100vw;
   min-height: 50px;
+  width: 100vw;
   background-color: rgba(#fff, 0.97);
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -11,10 +11,16 @@
   align-items: center;
   position: fixed;
   top: 0;
-  z-index: 10000;
+  z-index: 950;
   -webkit-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
   -moz-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
   box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+
+  &_logo {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 1rem;
+  }
 
   &_buttons-wrapper {
     float: right;
@@ -40,15 +46,15 @@
   .search-container {
     width: 20%;
     height: 100%;
+    max-height: 80px;
     border-radius: 35px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 
     &_logo {
-      font-weight: bold;
       padding-left: 1rem;
-      width: 2.75rem;
+      width: 2.4rem;
     }
   }
 
@@ -86,7 +92,14 @@
       &_avatar {
         background-color: $yellow;
         margin-right: 5px;
+        cursor: pointer;
       }
     }
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .top-bar-container {
+    height: 60px;
   }
 }

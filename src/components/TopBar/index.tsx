@@ -27,14 +27,16 @@ import {
   User,
 } from "../../shared/constants/interfaces";
 import {
+  logout,
   setAccessToken,
   setCurrentUser,
+  fetchMe,
 } from "../../store/actions/auth/auth.actions";
 import { LoginForm } from "../LoginForm";
 import { httpService } from "../../utils/httpService";
 import { RegisterForm } from "../RegisterForm";
-import { fetchMe } from "../../store/actions/auth/auth.actions";
 import { useStyles } from "./styles";
+import { DropDownMenu } from "../DropDownMenu";
 
 interface Props {
   isAuth?: boolean;
@@ -43,10 +45,21 @@ interface Props {
 
 const TopBarComponent: React.FC<
   Props & LinkDispatchProps & RouteComponentProps
-> = ({ isAuth, currentUser, setToken, setCurrentUser, history, fetchMe }) => {
+> = ({
+  isAuth,
+  currentUser,
+  setToken,
+  setCurrentUser,
+  history,
+  fetchMe,
+  logout,
+}) => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [registerModalOpen, setRegisterModalOpen] = useState(false);
   const [showSendLinkAgain, setShowSendLinkAgain] = useState<boolean>(false);
+  const [dropDownMenuExpanded, setDropDownMenuExpanded] = useState<boolean>(
+    false
+  );
   const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
 
@@ -55,6 +68,10 @@ const TopBarComponent: React.FC<
       fetchMe();
     }
   }, [isAuth, currentUser, fetchMe]);
+
+  const toggleDropDownMenu = () => {
+    setDropDownMenuExpanded(!dropDownMenuExpanded);
+  };
 
   const toggleLoginModal = () => {
     setLoginModalOpen(!loginModalOpen);
@@ -173,7 +190,14 @@ const TopBarComponent: React.FC<
             </div>
           </div>
         ) : (
-          <h3 className={"top-bar-container_logo"}>PeoCon</h3>
+          <>
+            <Link to={"/"}>
+              <Logo
+                className={"search-container_logo"}
+              />
+            </Link>
+            <h3 className={"top-bar-container_logo"}>PeoCon</h3>
+          </>
         )}
         {isAuth ? (
           <div className={"info-block"}>
@@ -203,9 +227,12 @@ const TopBarComponent: React.FC<
                   Hi, {currentUser?.firstName}
                 </span>
               )}
-              <IconButton>
+              <IconButton onClick={toggleDropDownMenu}>
                 <ExpandMore className={"info-block_icon"} />
               </IconButton>
+              {dropDownMenuExpanded && (
+                <DropDownMenu onClose={toggleDropDownMenu} logout={logout} />
+              )}
             </div>
           </div>
         ) : (
@@ -241,6 +268,7 @@ interface LinkDispatchProps {
   setCurrentUser: (user: User) => void;
   setToken: (token: string) => void;
   fetchMe: () => void;
+  logout: () => void;
 }
 
 const mapStateToProps: MapStateToProps<LinkStateProps, Props, AppState> = ({
@@ -256,6 +284,7 @@ const mapDispatchToProps: MapDispatchToProps<LinkDispatchProps, Props> = (
   setCurrentUser: (user: User) => dispatch(setCurrentUser(user)),
   setToken: (token: string) => dispatch(setAccessToken(token)),
   fetchMe: () => dispatch(fetchMe() as any),
+  logout: () => dispatch(logout()),
 });
 
 export const TopBar = connect(

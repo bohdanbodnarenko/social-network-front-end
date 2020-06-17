@@ -1,4 +1,5 @@
 import { Dispatch } from "redux";
+import { push } from "react-router-redux";
 
 import * as types from "./actionTypes";
 import {
@@ -11,6 +12,7 @@ import { AppActions } from "../app.actions";
 export const setAccessToken = (token: string): AppActions => {
   window.localStorage.setItem("accessToken", token);
   updateHttpServiceToken(token);
+  push("/");
   return {
     type: types.SET_ACCESS_TOKEN,
     payload: token,
@@ -26,17 +28,16 @@ export const setCurrentUser = (user: User): AppActions => {
 };
 
 export const logout = (): AppActions => {
-  window.localStorage.setItem("accessToken", "");
+  window.localStorage.clear();
   updateHttpServiceToken("");
+
   return {
     type: types.LOGOUT,
   };
 };
 
 export const fetchMe = () => async (dispatch: Dispatch<AppActions>) => {
-  console.log("Triggered fetchMe");
   const { data } = await httpService.get("me");
-  console.log(data);
   if (data) {
     dispatch(setCurrentUser(data));
   }
