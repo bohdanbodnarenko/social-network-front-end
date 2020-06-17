@@ -1,0 +1,92 @@
+@import "src/base";
+
+.dropdown {
+  position: absolute;
+  top: $top-bar-height + 10;
+  margin-top: 10px;
+  width: 400px;
+  transform: translateY(-45%);
+  background-color: #fff;
+  border: 1px solid $light-grey;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow: hidden;
+  -webkit-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+  -moz-box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+  box-shadow: 0 3px 5px rgba($dark-grey, 0.2);
+  z-index: 1000;
+  transition: height 500ms ease;
+
+  &_item {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: background 400ms;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: $dark-color;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $whitish;
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &_button {
+      &__right {
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+}
+
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+
+.menu-primary-exit {
+  position: absolute;
+}
+
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-enter {
+  transform: translateX(110%);
+}
+
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all var(--speed) ease;
+}
+
+.menu-secondary-exit {
+}
+
+.menu-secondary-exit-active {
+  transform: translateX(110%);
+  transition: all var(--speed) ease;
+}
+
+@media screen and (max-width: $break-small) {
+  .dropdown {
+    width: 300px;
+  }
+}
