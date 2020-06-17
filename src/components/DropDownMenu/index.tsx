@@ -1,6 +1,7 @@
 import * as React from "react";
-import { IoIosLogOut } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { IoIosLogOut } from "react-icons/io";
 import { CSSTransition } from "react-transition-group";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import { Avatar } from "@material-ui/core";
@@ -14,6 +15,7 @@ interface ItemProps extends React.HTMLProps<HTMLDivElement> {
   rightIcon?: React.ReactNode;
   goToMenu?: Menus;
   setActiveMenu?: (menu: Menus) => void;
+  linkTo?: string;
 }
 
 interface Props {
@@ -51,6 +53,7 @@ export const DropDownMenu: React.FC<Props> = ({ onClose, logout }) => {
     leftIcon,
     rightIcon,
     children,
+    linkTo,
     ...props
   }) => {
     const handleClick = (e: any) => {
@@ -61,14 +64,16 @@ export const DropDownMenu: React.FC<Props> = ({ onClose, logout }) => {
         setActiveMenu(goToMenu);
       }
     };
-    return (
+    const itemTemplate = (
       <div {...props} className={"dropdown_item"} onClick={handleClick}>
         <span className={"dropdown_item_button"}>{leftIcon}</span>
         {children}
         <span className={"dropdown_item_button__right"}>{rightIcon}</span>
       </div>
     );
+    return linkTo ? <Link to={linkTo}>{itemTemplate}</Link> : itemTemplate;
   };
+
   return (
     <div
       className={"dropdown"}
@@ -84,6 +89,7 @@ export const DropDownMenu: React.FC<Props> = ({ onClose, logout }) => {
       >
         <div className={"menu"}>
           <DropDownItem
+            linkTo={"/people/1"}
             leftIcon={
               <Avatar
                 alt="Remy Sharp"

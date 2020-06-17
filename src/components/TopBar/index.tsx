@@ -192,9 +192,7 @@ const TopBarComponent: React.FC<
         ) : (
           <>
             <Link to={"/"}>
-              <Logo
-                className={"search-container_logo"}
-              />
+              <Logo className={"search-container_logo"} />
             </Link>
             <h3 className={"top-bar-container_logo"}>PeoCon</h3>
           </>
@@ -209,31 +207,31 @@ const TopBarComponent: React.FC<
             <IconButton>
               <SettingsIcon className={"info-block_icon"} />
             </IconButton>
-            <div className={"info-block_user-block"}>
-              {currentUser && (
-                <Avatar
-                  alt="Remy Sharp"
-                  src={currentUser.imageUrl}
-                  sizes={"small"}
-                  className={"info-block_user-block_avatar"}
-                >
-                  {currentUser.imageUrl
-                    ? undefined
-                    : currentUser?.firstName[0] + currentUser?.lastName[0]}
-                </Avatar>
-              )}
-              {currentUser && (
+            {currentUser && (
+              <div className={"info-block_user-block"}>
+                <Link to={`/people/${currentUser.id}`}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={currentUser.imageUrl}
+                    sizes={"small"}
+                    className={"info-block_user-block_avatar"}
+                  >
+                    {currentUser.imageUrl
+                      ? undefined
+                      : currentUser?.firstName[0] + currentUser?.lastName[0]}
+                  </Avatar>
+                </Link>
                 <span className={"info-block_user-block_username"}>
                   Hi, {currentUser?.firstName}
                 </span>
-              )}
-              <IconButton onClick={toggleDropDownMenu}>
-                <ExpandMore className={"info-block_icon"} />
-              </IconButton>
-              {dropDownMenuExpanded && (
-                <DropDownMenu onClose={toggleDropDownMenu} logout={logout} />
-              )}
-            </div>
+                <IconButton onClick={toggleDropDownMenu}>
+                  <ExpandMore className={"info-block_icon"} />
+                </IconButton>
+                {dropDownMenuExpanded && (
+                  <DropDownMenu onClose={toggleDropDownMenu} logout={logout} />
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <div className={"top-bar-container_buttons-wrapper"}>
